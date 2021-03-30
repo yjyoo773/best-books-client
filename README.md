@@ -50,6 +50,17 @@ Finish time: 3:30 pm
 
 Actual time needed to complete: 1.5 hrs
 
+### Name of feature: connect front end to back end
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 2:30pm
+
+Finish time: /////////////////////////////////////////////////////////////////
+Actual time needed to complete: 
+
+### Name of feature: Authentication
+
 ## Credit and Collaborations
 
 ### Logistical
