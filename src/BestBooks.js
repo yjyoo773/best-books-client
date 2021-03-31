@@ -32,6 +32,7 @@ class BestBooks extends React.Component {
             {this.state.books.map((book, idx) => (
               <Carousel.Item key={idx}>
                 <img
+                  className="d-block w-100"
                   src="http://via.placeholder.com/300x450"
                   alt={`${book.name} ${book.description}`}
                 />
