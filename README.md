@@ -56,8 +56,8 @@ Estimate of time needed to complete: 2 hours
 
 Start time: 2:30pm
 
-Finish time: /////////////////////////////////////////////////////////////////
-Actual time needed to complete: 
+Finish time: 5:30 pm
+Actual time needed to complete:  3hrs
 
 ### Name of feature: Authentication
 
