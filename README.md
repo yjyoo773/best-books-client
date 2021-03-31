@@ -1,7 +1,8 @@
 # best-books-front-end
+
 **Author**: Elijah Prom, Ellis Yoo
 
-  **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 
@@ -12,12 +13,15 @@ Create a bookshelf site
 ## Getting Started
 
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
 Dependencies needed
+
 - @auth0/auth0-react
 - bootstrap
 - react
 - react-bootstrap
 - react-router-dom
+
 ## Architecture
 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -29,6 +33,8 @@ Implementing React and Node.js
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+
+![some pic](best-books-front-end.png)
 
 ### Name of feature: Set up your front-end repository
 
@@ -57,7 +63,7 @@ Estimate of time needed to complete: 2 hours
 Start time: 2:30pm
 
 Finish time: 5:30 pm
-Actual time needed to complete:  3hrs
+Actual time needed to complete: 3hrs
 
 ### Name of feature: Authentication
 
@@ -95,4 +101,3 @@ Actual time needed to complete:  3hrs
   Be open towards each other and as above divide roles.
 - How will you approach each other and the challenge of building an application knowing that it is impossible for two people to be at the exact same place in understanding and skill level?
   Take the time to explain when another is lost.
-
