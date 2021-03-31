@@ -11,6 +11,8 @@ import "./App.css";
 
 class App extends React.Component {
 
+
+
   render() {
     console.log("app", this.props);
     return (
@@ -21,7 +23,9 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {this.props.auth0.isAuthenticated ? (
-                  <MyFavoriteBooks email={this.props.auth0.user.email} />
+                  <MyFavoriteBooks
+                    email={this.props.auth0.user.email}
+                  />
                 ) : (
                   <Login />
                 )}

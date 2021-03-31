@@ -19,21 +19,26 @@ class BestBooks extends React.Component {
         params: { email: this.props.email },
       });
       this.setState({ books: books.data });
-      console.log("bestbooks", this.state.books);
+      this.props.updateBooks(books.data)
+      // console.log("bestbooks componentDidMount", this.state.books);
+
     } catch (error) {
       console.error(error);
     }
   };
   render() {
+    // console.log('insider render',this.state)
     return (
       <>
         {this.state.books.length > 0 && (
+
           <Carousel style={{ minHeight: "8rem" }}>
             {this.state.books.map((book, idx) => (
+
               <Carousel.Item key={idx}>
                 <img
                   className="d-block w-100"
-                  src="http://via.placeholder.com/300x450"
+                  src="http://via.placeholder.com/200x300"
                   alt={`${book.name} ${book.description}`}
                 />
                 <Carousel.Caption>
