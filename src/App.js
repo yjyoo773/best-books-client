@@ -10,13 +10,6 @@ import Profile from "./Profile";
 import "./App.css";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-      email: "",
-    };
-  }
 
   render() {
     console.log("app", this.props);
@@ -27,9 +20,10 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {!this.props.auth0.isAuthenticated && <Login />}
-                {this.props.auth0.isAuthenticated && (
+                {this.props.auth0.isAuthenticated ? (
                   <MyFavoriteBooks email={this.props.auth0.user.email} />
+                ) : (
+                  <Login />
                 )}
               </Route>
               <Route exact path="/profile">
