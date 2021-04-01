@@ -4,9 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 class BookFormModal extends React.Component {
-  state = { name: null, description: "", status: "" };
-  handleChangeName = (e) =>
-    this.setState({ newBookName: e.target.value, toggle: !this.state.toggle });
+  state = { name: "", description: "", status: "" };
+  handleChangeName = (e) => this.setState({ newBookName: e.target.value });
   handleChangeDesc = (e) => this.setState({ newBookDesc: e.target.value });
   handleChangeStat = (e) => this.setState({ newBookStat: e.target.value });
 
@@ -18,13 +17,11 @@ class BookFormModal extends React.Component {
       this.state.newBookStat
     );
 
-    const test = this.props
-      .createBook
-      //   this.state.newBookName,
-      //   this.state.newBookDesc,
-      //   this.state.newBookStat,
-      //   this.state.toggle
-      ();
+    const test = this.props.updateItem(
+      this.state.newBookName,
+      this.state.newBookDesc,
+      this.state.newBookStat
+    );
     this.props.books.push(test);
     this.props.closeModal();
   };
