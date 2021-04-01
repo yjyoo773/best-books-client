@@ -65,7 +65,23 @@ Start time: 2:30pm
 Finish time: 5:30 pm
 Actual time needed to complete: 3hrs
 
-### Name of feature: Authentication
+### Name of feature: Allow to create books
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 1:30pm
+
+Finish time: 3:40 pm
+Actual time needed to complete: 2hrs 10 min
+
+### Name of feature: Allow to delete books
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 3:40pm
+
+Finish time: 6:30 pm
+Actual time needed to complete: 2hrs
 
 ## Credit and Collaborations
 
