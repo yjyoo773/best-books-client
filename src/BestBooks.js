@@ -4,12 +4,12 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 
 class BestBooks extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     books: [],
+  //   };
+  // }
 
   componentDidMount = () => {
     this.getBooks();
@@ -23,7 +23,7 @@ class BestBooks extends React.Component {
       const books = await axios.get(`${url}/books`, {
         params: { email: this.props.email },
       });
-      this.setState({ books: books.data });
+      // this.setState({ books: books.data });
       this.props.updateBooks(books.data);
       // console.log("bestbooks componentDidMount", this.state.books);
     } catch (error) {
@@ -31,16 +31,16 @@ class BestBooks extends React.Component {
     }
   };
   render() {
-    console.log(this.props);
+    console.log("from bestbooks",this.props);
     return (
       <>
         {this.props.books.length > 0 && (
-          <Carousel style={{ minHeight: "8rem" }}>
+          <Carousel>
             {this.props.books.map((book, idx) => (
               <Carousel.Item key={idx}>
                 <img
                   className="d-block w-100"
-                  src="http://via.placeholder.com/200x300"
+                  src="http://via.placeholder.com/800x400"
                   alt={`${book.name} ${book.description}`}
                 />
                 <Carousel.Caption>
@@ -51,9 +51,10 @@ class BestBooks extends React.Component {
                     {`Status: ${book.status}`}
                   </p>
                   <Button
+                    variant="dark"
                     onClick={() => {
                       this.props.deleteItem(idx);
-                      this.getBooks();
+                      // this.getBooks();
                     }}
                   >
                     Delete This Book

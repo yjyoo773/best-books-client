@@ -5,7 +5,8 @@ import Button from "react-bootstrap/Button";
 
 class BookFormModal extends React.Component {
   state = { name: null, description: "", status: "" };
-  handleChangeName = (e) => this.setState({ newBookName: e.target.value, toggle: !this.state.toggle });
+  handleChangeName = (e) =>
+    this.setState({ newBookName: e.target.value, toggle: !this.state.toggle });
   handleChangeDesc = (e) => this.setState({ newBookDesc: e.target.value });
   handleChangeStat = (e) => this.setState({ newBookStat: e.target.value });
 
@@ -16,14 +17,14 @@ class BookFormModal extends React.Component {
       this.state.newBookDesc,
       this.state.newBookStat
     );
-    
-    const test = this.props.createBook(      
+
+    const test = this.props.createBook(
       this.state.newBookName,
       this.state.newBookDesc,
       this.state.newBookStat,
       this.state.toggle
-      );
-      this.props.books.push(test)
+    );
+    this.props.books.push(test);
     this.props.closeModal();
   };
   render() {
@@ -50,15 +51,19 @@ class BookFormModal extends React.Component {
             />
             <Form.Label>Status: </Form.Label>
             <Form.Control
-              type="text"
+              as="select"
               onChange={this.handleChangeStat}
               value={this.state.newBookStat}
-              placeholder="not read/read/reading"
-            />
+            >
+              <option default>Select</option>
+              <option>Not Read</option>
+              <option>Reading</option>
+              <option>Read</option>
+            </Form.Control>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+          <Button variant="outline-dark" type="submit" onClick={this.handleSubmit}>
             Submit
           </Button>
         </Modal.Footer>

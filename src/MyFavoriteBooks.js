@@ -4,7 +4,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import "./myFavoriteBooks.css";
 import BestBooks from "./BestBooks";
 import axios from "axios";
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import BookFormModal from "./BookFormModal";
 
 class MyFavoriteBooks extends React.Component {
@@ -17,13 +17,12 @@ class MyFavoriteBooks extends React.Component {
       newBookName: "",
       newBookDesc: "",
       newBookStat: "",
-      toggle: true,
     };
   }
 
   formForModal = (newBookName, newBookDesc, newBookStat) => {
     this.setState({ newBookName });
-    console.log('newbook', newBookName);
+    console.log("newbook", newBookName);
     this.setState({ newBookDesc });
     this.setState({ newBookStat });
   };
@@ -33,17 +32,17 @@ class MyFavoriteBooks extends React.Component {
 
   updateBooks = (bookState) => this.setState({ books: bookState });
 
-  createBook = async (x,y,z,toggle) => {
+  createBook = async (name, desc, stat) => {
     console.log("stuff", this.state);
     // e.preventDefault();
     const SERVER = "http://localhost:3001";
     const books = await axios.post(`${SERVER}/books`, {
-      bookName: x,
-      description: y,
-      status: z,
+      bookName: name,
+      description: desc,
+      status: stat,
       email: this.props.email,
     });
-    this.setState({ books: books.data, toggle: this.state.toggle });
+    this.setState({ books: books.data });
   };
 
   deleteItem = async (index) => {
@@ -53,12 +52,12 @@ class MyFavoriteBooks extends React.Component {
     const newBooks = await axios.delete(`${SERVER}/books/${index}`, {
       params: { email: this.props.email },
     });
-    console.log("look", this.state.books);
+    console.log("bookState to delete", this.state.books);
 
     const newBookArray = this.state.books.filter((book, i) => {
       return index !== i;
     });
-    console.log("new book array", newBookArray);
+    console.log("deleted newbook array", newBookArray);
     this.setState({ books: newBookArray });
   };
 
@@ -66,20 +65,24 @@ class MyFavoriteBooks extends React.Component {
     console.log("FavoriteBooks", this.state);
     return (
       <Jumbotron>
-        {/* <Button onClick = >Add Book</Button> */}
-        <button onClick={this.openModal}>Display Modal Form</button>
         <BookFormModal
           formForModal={this.formForModal}
           closeModal={this.closeModal}
           isOpen={this.state.isOpen}
           handleSubmit={this.handleSubmit}
           createBook={this.createBook}
-          toggle={this.state.toggle}
           updateBooks={this.updateBooks}
           books={this.state.books}
         />
         <h1>My Favorite Books</h1>
         <p>This is a collection of my favorite books</p>
+        <Button
+          variant="outline-dark"
+          onClick={this.openModal}
+          style={{ marginBottom: "1rem" }}
+        >
+          Add Book
+        </Button>
         <BestBooks
           email={this.props.email}
           books={this.state.books}

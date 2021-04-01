@@ -10,7 +10,12 @@ class Footer extends React.Component {
         expand="lg"
         bg="dark"
         variant="dark"
-        // style={{ position: "absolute", left: "0", bottom: "0", right: "0" }}
+        // style={{
+        //   position: "absolute",
+        //   width:'100%',
+        //   bottom: "0",
+        //   zIndex: "99",
+        // }}
       >
         <Navbar.Brand>&copy; Best Books</Navbar.Brand>
       </Navbar>
