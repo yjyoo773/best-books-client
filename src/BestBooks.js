@@ -59,6 +59,14 @@ class BestBooks extends React.Component {
                   >
                     Delete This Book
                   </Button>
+                  <Button
+                    variant="dark"
+                    onClick={() => {
+                      this.props.updateItem(idx);
+                    }}
+                  >
+                    Update This Book
+                  </Button>
                 </Carousel.Caption>
               </Carousel.Item>
             ))}

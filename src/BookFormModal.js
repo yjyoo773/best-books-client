@@ -63,7 +63,11 @@ class BookFormModal extends React.Component {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-dark" type="submit" onClick={this.handleSubmit}>
+          <Button
+            variant="outline-dark"
+            type="submit"
+            onClick={this.handleSubmit}
+          >
             Submit
           </Button>
         </Modal.Footer>
