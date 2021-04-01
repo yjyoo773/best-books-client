@@ -9,13 +9,23 @@ import LoginButton from "./LoginButton";
 class Header extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        style={{ position: "sticky",top:"0",zIndex:"99"}}
+      >
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <Nav.Link className="ml-auto">
-          <Link className="navItem" to="/">Home</Link>
+          <Link className="navItem" to="/">
+            Home
+          </Link>
         </Nav.Link>
         <Nav.Link className="navItem">
-          <Link className="navItem" to="/profile">Profile</Link>
+          <Link className="navItem" to="/profile">
+            Profile
+          </Link>
         </Nav.Link>
         <Logout />
         <LoginButton />
