@@ -17,6 +17,9 @@ class MyFavoriteBooks extends React.Component {
       newBookName: "",
       newBookDesc: "",
       newBookStat: "",
+      chosenBook: {},
+      indexOfChosenBook: -1,
+      displayUpdateForm: false,
     };
   }
 
@@ -59,6 +62,32 @@ class MyFavoriteBooks extends React.Component {
     });
     console.log("deleted newbook array", newBookArray);
     this.setState({ books: newBookArray });
+  };
+  displayUpdateForm = (index) => {
+    const chosenBook = this.state.books[index];
+    this.setState({ chosenBook, indexOfChosenBook: index });
+    this.setState({ displayUpdateForm: true });
+  };
+
+  updateItem = async (e) => {
+    e.preventDefault();
+    const SERVER = "http://localhost:3001";
+    const book = {
+      name: this.state.newBookName,
+      description: this.state.newBookDesc,
+      status: this.state.newBookStat,
+    };
+    this.state.books.splice(this.state.indexOfChosenBook, 1, book);
+    const updateBooksArray = await axios.put(
+      `${SERVER}/books/${this.state.indexOfChosenBook}`,
+      {
+        email: this.props.email,
+        name: this.state.newBookName,
+        description: this.state.newBookDesc,
+        status: this.state.newBookStat,
+      }
+    );
+    this.setState({ books: updateBooksArray.data });
   };
 
   render() {
