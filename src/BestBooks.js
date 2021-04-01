@@ -4,13 +4,6 @@ import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 
 class BestBooks extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     books: [],
-  //   };
-  // }
-
   componentDidMount = () => {
     this.getBooks();
   };
@@ -31,7 +24,7 @@ class BestBooks extends React.Component {
     }
   };
   render() {
-    console.log("from bestbooks",this.props);
+    console.log("from bestbooks", this.props);
     return (
       <>
         {this.props.books.length > 0 && (
@@ -59,10 +52,11 @@ class BestBooks extends React.Component {
                   >
                     Delete This Book
                   </Button>
+                  &nbsp;
                   <Button
                     variant="dark"
                     onClick={() => {
-                      this.props.updateItem(idx);
+                      this.props.displayUpdateForm(idx);
                     }}
                   >
                     Update This Book

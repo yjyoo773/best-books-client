@@ -117,6 +117,7 @@ class MyFavoriteBooks extends React.Component {
           books={this.state.books}
           updateBooks={this.updateBooks}
           deleteItem={this.deleteItem}
+          displayUpdateForm={this.displayUpdateForm}
         />
       </Jumbotron>
     );
