@@ -53,7 +53,7 @@ class MyFavoriteBooks extends React.Component {
     const newBooks = await axios.delete(`${SERVER}/books/${index}`, {
       params: { email: this.props.email },
     });
-    console.log("bookState to delete", this.state.books);
+    console.log("bookState to delete", newBooks.data);
 
     const newBookArray = this.state.books.filter((book, i) => {
       return index !== i;
