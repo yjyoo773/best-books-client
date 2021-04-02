@@ -12,14 +12,13 @@ class MyFavoriteBooks extends React.Component {
     super(props);
     this.state = {
       books: [],
-      // bookName: "",
       isOpen: false,
       newBookName: "",
       newBookDesc: "",
       newBookStat: "",
       chosenBook: {},
       indexOfChosenBook: -1,
-      displayUpdateForm: false,
+      updateFormOpen: false,
     };
   }
 
@@ -29,15 +28,15 @@ class MyFavoriteBooks extends React.Component {
     this.setState({ newBookDesc });
     this.setState({ newBookStat });
   };
+
   openModal = () => this.setState({ isOpen: true });
   closeModal = () => this.setState({ isOpen: false });
-  // handleSubmit(name,desc,status) => //some code
+  closeUpdateModal = () => this.setState({ updateFormOpen: false });
 
   updateBooks = (bookState) => this.setState({ books: bookState });
 
   createBook = async (name, desc, stat) => {
     console.log("stuff", this.state);
-    // e.preventDefault();
     const SERVER = "http://localhost:3001";
     const books = await axios.post(`${SERVER}/books`, {
       bookName: name,
@@ -49,13 +48,12 @@ class MyFavoriteBooks extends React.Component {
   };
 
   deleteItem = async (index) => {
-    // use axios to call our API to delete the cat at the index specified
     console.log(index);
     const SERVER = "http://localhost:3001";
     const newBooks = await axios.delete(`${SERVER}/books/${index}`, {
       params: { email: this.props.email },
     });
-    console.log("bookState to delete", this.state.books);
+    console.log("bookState to delete", newBooks.data);
 
     const newBookArray = this.state.books.filter((book, i) => {
       return index !== i;
@@ -63,35 +61,35 @@ class MyFavoriteBooks extends React.Component {
     console.log("deleted newbook array", newBookArray);
     this.setState({ books: newBookArray });
   };
-  displayUpdateForm = (index) => {
-    const chosenBook = this.state.books[index];
-    this.setState({ chosenBook, indexOfChosenBook: index });
-    this.setState({ displayUpdateForm: true });
-  };
 
-  updateItem = async (e) => {
-    e.preventDefault();
+  updateItem = async (newName, newDesc, newStat) => {
     const SERVER = "http://localhost:3001";
     const book = {
-      name: this.state.newBookName,
-      description: this.state.newBookDesc,
-      status: this.state.newBookStat,
+      name: newName,
+      description: newDesc,
+      status: newStat,
     };
     this.state.books.splice(this.state.indexOfChosenBook, 1, book);
     const updateBooksArray = await axios.put(
       `${SERVER}/books/${this.state.indexOfChosenBook}`,
       {
         email: this.props.email,
-        name: this.state.newBookName,
-        description: this.state.newBookDesc,
-        status: this.state.newBookStat,
+        name: newName,
+        description: newDesc,
+        status: newStat,
       }
     );
+    console.log(updateBooksArray);
     this.setState({ books: updateBooksArray.data });
   };
 
+  displayUpdateForm = (index) => {
+    const chosenBook = this.state.books[index];
+    this.setState({ chosenBook, indexOfChosenBook: index });
+    this.setState({ updateFormOpen: true });
+  };
+
   render() {
-    console.log("FavoriteBooks", this.state);
     return (
       <Jumbotron>
         <BookFormModal
@@ -118,6 +116,10 @@ class MyFavoriteBooks extends React.Component {
           updateBooks={this.updateBooks}
           deleteItem={this.deleteItem}
           displayUpdateForm={this.displayUpdateForm}
+          updateItem={this.updateItem}
+          formForModal={this.formForModal}
+          closeUpdateModal={this.closeUpdateModal}
+          updateFormOpen={this.state.updateFormOpen}
         />
       </Jumbotron>
     );

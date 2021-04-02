@@ -14,7 +14,7 @@ class Header extends React.Component {
         expand="lg"
         bg="dark"
         variant="dark"
-        style={{ position: "sticky",top:"0",zIndex:"99"}}
+        style={{ position: "sticky", top: "0", zIndex: "99" }}
       >
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <Nav.Link className="ml-auto">
