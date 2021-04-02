@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
+import UpdateBookModal from "./UpdateBookModal";
 
 class BestBooks extends React.Component {
   componentDidMount = () => {
@@ -9,22 +10,17 @@ class BestBooks extends React.Component {
   };
 
   getBooks = async () => {
-    // e.preventDefault();
-    // console.log('all the books', this.props.email);
     try {
       const url = "http://localhost:3001";
       const books = await axios.get(`${url}/books`, {
         params: { email: this.props.email },
       });
-      // this.setState({ books: books.data });
       this.props.updateBooks(books.data);
-      // console.log("bestbooks componentDidMount", this.state.books);
     } catch (error) {
       console.error(error);
     }
   };
   render() {
-    console.log("from bestbooks", this.props);
     return (
       <>
         {this.props.books.length > 0 && (
@@ -33,7 +29,7 @@ class BestBooks extends React.Component {
               <Carousel.Item key={idx}>
                 <img
                   className="d-block w-100"
-                  src="http://via.placeholder.com/800x400"
+                  src="http://placekitten.com/1600/900"
                   alt={`${book.name} ${book.description}`}
                 />
                 <Carousel.Caption>
@@ -47,7 +43,6 @@ class BestBooks extends React.Component {
                     variant="dark"
                     onClick={() => {
                       this.props.deleteItem(idx);
-                      // this.getBooks();
                     }}
                   >
                     Delete This Book
@@ -61,6 +56,13 @@ class BestBooks extends React.Component {
                   >
                     Update This Book
                   </Button>
+                  <UpdateBookModal
+                    updateItem={this.props.updateItem}
+                    isOpen={this.props.updateFormOpen}
+                    closeModal={this.props.closeUpdateModal}
+                    books={this.props.books}
+                    formForModal={this.props.formForModal}
+                  />
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
