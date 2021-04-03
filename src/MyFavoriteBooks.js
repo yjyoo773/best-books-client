@@ -13,12 +13,12 @@ class MyFavoriteBooks extends React.Component {
     this.state = {
       books: [],
       isOpen: false,
+      updateFormOpen: false,
       newBookName: "",
       newBookDesc: "",
       newBookStat: "",
       chosenBook: {},
       indexOfChosenBook: -1,
-      updateFormOpen: false,
     };
   }
 
@@ -31,6 +31,7 @@ class MyFavoriteBooks extends React.Component {
 
   openModal = () => this.setState({ isOpen: true });
   closeModal = () => this.setState({ isOpen: false });
+  
   closeUpdateModal = () => this.setState({ updateFormOpen: false });
 
   updateBooks = (bookState) => this.setState({ books: bookState });
@@ -73,11 +74,12 @@ class MyFavoriteBooks extends React.Component {
     const updateBooksArray = await axios.put(
       `${SERVER}/books/${this.state.indexOfChosenBook}`,
       {
-        email: this.props.email,
+        // email: this.props.email,
         name: newName,
         description: newDesc,
         status: newStat,
-      }
+      },
+      { params: { email: this.props.email } }
     );
     console.log(updateBooksArray);
     this.setState({ books: updateBooksArray.data });
